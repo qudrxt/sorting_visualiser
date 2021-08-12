@@ -11,15 +11,14 @@ import threading
 import winsound
 import pathlib
 import pygame
+import math
 import sys
 pygame.init()
 
 filePath = str(pathlib.Path().absolute())
 labelSFX = filePath[:len(filePath)-4] + "Misc\\labelSFX.wav"
 
-minFreq, maxFreq = 6000, 12000
-maxDiff = 500
-
+minFreq, maxFreq, maxDiff = 6000, 12000, 500
 WHITE, GREEN = (255, 255, 255), (0, 255, 0)
 
 
@@ -187,6 +186,70 @@ def countingSort(visHandObj: VisualiserHandler):
 
     if auxRectList[0].getColour() == WHITE:
         colourSortedRects(visHandObj.getCollection())
+
+
+def radixSort(visHandObj: VisualiserHandler, inpBase: int = 10):
+    maxPos = int((math.log(max(visHandObj.getCollection(), key = lambda x: x.getHeight()).getHeight(), inpBase)) + 1)
+
+    for i in range(maxPos):
+        if visHandObj.getHaltState():
+            return
+
+        radixSubroutine(visHandObj.getCollection(), visHandObj, i, inpBase)
+
+    if visHandObj.getCollection()[0].getColour() == WHITE:
+        colourSortedRects(visHandObj.getCollection())
+
+
+def calcDigit(inpNumber: int, inpDigit: int, inpBase: int):
+    return (inpNumber // inpBase ** inpDigit) % inpBase
+
+
+def radixSubroutine(rectList: List[Rectangle], visHandObj: VisualiserHandler, digitValue: int, baseValue: int = 10):
+    freqList = [0 for _ in range(baseValue)]
+    returnList = [None for _ in range(len(rectList))]
+
+    # Count the frequency of each element
+
+    for subRect in rectList:
+        freqList[calcDigit(subRect.getHeight(), digitValue, baseValue)] += 1
+
+    # Pre-processing computation
+
+    for i in range(1, len(freqList)):
+        freqList[i] += freqList[i-1]
+
+    for j in range(len(freqList)-1, 0, -1):
+        freqList[j] = freqList[j-1]
+
+    freqList[0] = 0
+
+    for _ in range(4):
+
+        for i in range(len(rectList)):
+            if eventHandler(visHandObj):
+                visHandObj.setEndInd(len(rectList))
+                visHandObj.setHaltState(True)
+                return
+
+            visHandObj.setNumAccs(visHandObj.getNumAccs() + 2)
+
+            if (i + 1) % 5 == 0:
+                detailHandler(visHandObj)
+
+    for i in range(len(rectList)):
+        rectPos = calcDigit(rectList[i].getHeight(), digitValue, baseValue)
+        returnList[freqList[rectPos]] = rectList[i]
+
+        modifyVisually(rectList[freqList[rectPos]], returnList[freqList[rectPos]], freqList[rectPos], visHandObj.getSoundState())
+        visHandObj.setNumAccs(visHandObj.getNumAccs() + 2)
+
+        freqList[rectPos] += 1
+
+        if (i + 1) % 5 == 0:
+            detailHandler(visHandObj)
+
+    visHandObj.setCollection(returnList)
 
 
 def shakerSort(visHandObj: VisualiserHandler):
