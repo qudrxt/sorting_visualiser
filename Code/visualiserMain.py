@@ -17,7 +17,8 @@ pygame.init()
 
 sortingAlgos = [("Bubble Sort", bubbleSort), ("Comb Sort", combSort), ("Counting Sort", countingSort),
                 ("Insertion Sort", insertionSort), ("Merge Sort", mergeSort), ("Quick Sort", quickSort),
-                ("Selection Sort", selectionSort), ("Shaker Sort", shakerSort), ("Shell Sort", shellSort)]
+                ("Radix Sort", radixSort), ("Selection Sort", selectionSort), ("Shaker Sort", shakerSort),
+                ("Shell Sort", shellSort)]
 
 widthLabels, modeLabels, soundLabels = ["Thin", "Moderate", "Thick"], ["Standard", "Gradient"], ["On", "Off"]
 
