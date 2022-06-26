@@ -1,5 +1,5 @@
 # Sorting-Algorithms-Visualiser ##
-Developed with the Python language and its PyGame library to visualise sorting algorithms. It displays a GUI that can be used to configure the visualisation's attributes to display your desired algorithm in your desired fashion. 
+Developed with the Python language and its PyGame library to visualise sorting algorithms. It displays a GUI that can be used to configure the visualisation's attributes to display your desired algorithm in your desired fashion. This project was initially developed without the usage of version control.
 
 ## Preview ##
 ![](Misc/visPreview.png)
