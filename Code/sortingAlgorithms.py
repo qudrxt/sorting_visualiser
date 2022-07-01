@@ -168,7 +168,6 @@ def countingSort(visHandObj: VisualiserHandler):
             if (i + 1) % 5 == 0:
                 detailHandler(visHandObj)
 
-
     for i in range(len(auxRectList)):
         if eventHandler(visHandObj):
             visHandObj.setCollection(auxRectList[:i] + rectList[i:])
@@ -510,6 +509,7 @@ def sortSort(beepFreq, beepDur):
     winsound.Beep(beepFreq, beepDur)
 
     # Incur delay for better pronounced beeps
+
     pygame.time.delay(100)
 
 
