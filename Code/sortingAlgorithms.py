@@ -8,7 +8,6 @@ from typing import List
 from math import floor
 
 import threading
-import winsound
 import pathlib
 import pygame
 import math
@@ -506,7 +505,7 @@ def detailHandler(visHandObj: VisualiserHandler):
 
 
 def sortSort(beepFreq, beepDur):
-    winsound.Beep(beepFreq, beepDur)
+    # TODO: Use non-OS specific sound module
 
     # Incur delay for better pronounced beeps
 
@@ -537,7 +536,8 @@ def eventHandler(visHandObj: VisualiserHandler):
     if buttonPressed:
 
         if visHandObj.getSoundState():
-            winsound.PlaySound(labelSFX, winsound.SND_ALIAS)
+            # TODO: Use non-OS specific sound module
+            pass
 
         if buttonPressed == "Pause":
             visPaused = True
@@ -549,7 +549,8 @@ def eventHandler(visHandObj: VisualiserHandler):
                     visPaused = False
 
                     if visHandObj.getSoundState():
-                        winsound.PlaySound(labelSFX, winsound.SND_ALIAS)
+                        # TODO: Use non-OS specific sound module
+                        pass
 
         elif buttonPressed == "Menu":
             visHandObj.setHaltState(True)

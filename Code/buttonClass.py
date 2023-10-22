@@ -4,7 +4,6 @@ This file stores the properties and functionality of a label object.
 
 from labelClass import Label
 
-import winsound
 import pygame
 pygame.init()
 
@@ -89,4 +88,4 @@ class Button(Label):
         self.displayWidget()
 
     def playSFX(self):
-        winsound.PlaySound(self.buttonSFX, winsound.SND_ALIAS)
+        pass

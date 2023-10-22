@@ -27,11 +27,11 @@ DIM_WHITE, RED, GREEN = (230, 230, 230), (255, 0, 0), (0, 255, 0)
 BLUE = (0, 0, 255)
 
 filePath = str(pathlib.Path().absolute())
-lightFontPath = filePath[:len(filePath)-4] + "Misc\\TafelSansPro-Light.ttf"
-regularFontPath = filePath[:len(filePath)-4] + "Misc\\TafelSansPro-Regular.ttf"
+lightFontPath = filePath[:len(filePath)-4] + "Misc/TafelSansPro-Light.ttf"
+regularFontPath = filePath[:len(filePath)-4] + "Misc/TafelSansPro-Regular.ttf"
 
-exButtonSFX = filePath[:len(filePath)-4] + "Misc\\exButtonSFX.wav"
-imButtonSFX = filePath[:len(filePath)-4] + "Misc\\imButtonSFX.wav"
+exButtonSFX = filePath[:len(filePath)-4] + "Misc/exButtonSFX.wav"
+imButtonSFX = filePath[:len(filePath)-4] + "Misc/imButtonSFX.wav"
 
 exWidgetFont, imButtonFont = Font(lightFontPath, 20, WHITE), Font(lightFontPath, 25, GREY)
 optionLabelFont, titleFont = Font(lightFontPath, 20, DIM_WHITE), Font(regularFontPath, 20, WHITE, True)
